@@ -2,7 +2,6 @@ import { ChangeEvent, useState } from 'react'
 import logo from './assets/logo-nlw-expert.svg'
 import { AddNoteCard } from './components/add-note-card'
 import { NoteCard } from './components/note-card'
-import { Search } from 'lucide-react'
 
 interface iNote {
   id: string,
@@ -34,7 +33,7 @@ export function App() {
 
   function OnNoteCreated(content: string){
     const newNote = {
-      id: crypto.randomUUID,
+      id: crypto.randomUUID(),
       date: new Date(),
       content,
     }
@@ -48,7 +47,7 @@ export function App() {
   }
 
   function OnNoteDeleted(id: string){
-    const listArrays = notes.filter(note => {return note.id != note.id})
+    const listArrays = notes.filter(note => {return note.id != id})
 
     setNotes(listArrays)
     localStorage.setItem('notes', JSON.stringify(listArrays))
